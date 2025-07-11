@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.reynem.simplecook.MainActivity
+import com.reynem.simplecook.ProfileActivity
+import com.reynem.simplecook.SettingsActivity
 
 @Composable
 fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modifier){
@@ -16,6 +18,14 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
     ) {
         composable(Screens.Home.route) {
             MainActivity()
+        }
+
+        composable(Screens.Profile.route) {
+            ProfileActivity()
+        }
+
+        composable(Screens.Settings.route) {
+            SettingsActivity()
         }
     }
 }

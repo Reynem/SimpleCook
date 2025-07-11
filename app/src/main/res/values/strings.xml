@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleCook</string>
+    <string name="title_activity_profile_acitvity">ProfileAcitvity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>
