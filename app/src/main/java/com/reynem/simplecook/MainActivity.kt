@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.reynem.simplecook.navigation.MainScreen
 import com.reynem.simplecook.ui.theme.SimpleCookTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,6 +39,7 @@ fun MyApp(modifier: Modifier = Modifier){
             Column{
                 ProfileContainer(modifier = Modifier.padding(innerPadding))
             }
+            MainScreen()
         }
     }
 }
