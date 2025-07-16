@@ -17,14 +17,14 @@ fun HistoryApp(modifier: Modifier = Modifier){
 
 
 @Composable
-fun UserInformation() {
+fun UserInformation(modifier: Modifier = Modifier){
     val name = "John Doe"
     val bio = "Android Developer"
     val location = "New York"
 
-    Text(text = name)
-    Text(text = bio)
-    Text(text = location)
+    Text(text = name, modifier = modifier)
+    Text(text = bio, modifier = modifier)
+    Text(text = location, modifier = modifier)
 }
 
 @Preview(showBackground = true)
