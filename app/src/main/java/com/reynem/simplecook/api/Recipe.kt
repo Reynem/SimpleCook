@@ -1,6 +1,6 @@
 package com.reynem.simplecook.api
 
-data class RecipeDTO (
+data class Recipe (
     val ingredients: String,
     val number: Int,
     val ranking: Int,
