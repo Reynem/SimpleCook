@@ -25,7 +25,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         val secretsProperties = Properties()
-        val secretsFile = rootProject.file("secrets.properties")
+        val secretsFile = rootProject.file("local.properties")
         if (secretsFile.exists()) {
             secretsProperties.load(FileInputStream(secretsFile))
         }
@@ -66,6 +66,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
