@@ -8,6 +8,6 @@ interface ApiService {
     @GET("recipes/findByIngredients")
     suspend fun findRecipesByIngredients(
         @Query("ingredients") ingredients: String,
-        @Query("number") number: Int = 1
+        @Query("number") number: Int = 5
     ): List<Recipe>
 }

@@ -13,10 +13,13 @@ import androidx.navigation.compose.rememberNavController
 import com.reynem.simplecook.navigation.BottomNavigationBar
 import com.reynem.simplecook.navigation.NavigationGraph
 import com.reynem.simplecook.ui.theme.SimpleCookTheme
+import com.reynem.simplecook.api.ApiClient
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ApiClient.initialize(applicationContext)
         enableEdgeToEdge()
         setContent {
             MainApp()
