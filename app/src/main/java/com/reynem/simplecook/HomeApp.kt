@@ -47,6 +47,12 @@ fun HomeApp(modifier: Modifier = Modifier, recipeViewModel: RecipeViewModel = vi
         if (error.isNotEmpty()) {
             Text(text = error)
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        recipes.forEach { recipe ->
+            Text(text = recipe.title)
+        }
     }
 }
 

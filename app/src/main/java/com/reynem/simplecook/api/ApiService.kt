@@ -1,5 +1,6 @@
 package com.reynem.simplecook.api
 
+import com.reynem.simplecook.api.models.Recipe
 import retrofit2.http.GET
 import retrofit2.http.Query
 
