@@ -16,40 +16,44 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import com.reynem.simplecook.compound.IngredientsViewModel
+
 val ingredients : List<String> = listOf("Tomato", "Garlic", "Potato")
+val viewModel: IngredientsViewModel = IngredientsViewModel()
 
 @Composable
-fun CompoundApp(modifier: Modifier = Modifier) {
+fun CompoundApp() {
     FlowRow (
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
-        repeat(ingredients.size){ ingredient ->
-            IngredientButton(ingredients[ingredient])
+        repeat(ingredients.size){
+            IngredientButton(ingredient = ingredients[it])
         }
     }
 }
 
 @Composable
 fun IngredientButton(ingredient: String){
-    var flag by remember { mutableStateOf(false) }
+    var buttonOn by remember { mutableStateOf(false) }
     Button(
         contentPadding = PaddingValues(vertical = 4.dp, horizontal = 12.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.inversePrimary),
         shape = MaterialTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(containerColor =
-            if (flag) {MaterialTheme.colorScheme.surface}
-            else {MaterialTheme.colorScheme.primary}
+            if (buttonOn) {MaterialTheme.colorScheme.primary}
+            else {MaterialTheme.colorScheme.surface}
         ),
         onClick = {
-            flag = !flag
+            viewModel.toggleIngredient(ingredient)
+            buttonOn = !buttonOn
         }
     )
     {
         Text(
-            color = if (flag) {MaterialTheme.colorScheme.onSurface}
-                    else {MaterialTheme.colorScheme.onPrimary},
+            color = if (buttonOn) {MaterialTheme.colorScheme.onPrimary}
+                    else {MaterialTheme.colorScheme.onSurface},
             fontSize = 12f.sp,
             text = ingredient
         )
