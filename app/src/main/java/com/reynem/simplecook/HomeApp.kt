@@ -18,14 +18,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -35,12 +31,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.SubcomposeAsyncImage
 import com.reynem.simplecook.api.RecipeViewModel
+import com.reynem.simplecook.compound.IngredientsViewModel
 import com.reynem.simplecook.api.models.Recipe
 import com.reynem.simplecook.ui.theme.SimpleCookTheme
 
 @Composable
-fun HomeApp(modifier: Modifier = Modifier, recipeViewModel: RecipeViewModel = viewModel()) {
-    var ingredients by remember { mutableStateOf("")}
+fun HomeApp(modifier: Modifier = Modifier,
+            recipeViewModel: RecipeViewModel,
+            ingredientsViewModel: IngredientsViewModel
+) {
+    val ingredients = ingredientsViewModel.triggeredIngredients.joinToString(",")
     val recipes by recipeViewModel.recipes.observeAsState(emptyList())
     val error by recipeViewModel.error.observeAsState("")
 
@@ -50,11 +50,11 @@ fun HomeApp(modifier: Modifier = Modifier, recipeViewModel: RecipeViewModel = vi
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        OutlinedTextField(
-            value = ingredients,
-            onValueChange = { ingredients = it },
-            label = { Text("Ingredients") },
-        )
+//        OutlinedTextField(
+//            value = ingredients,
+//            onValueChange = { ingredients = it },
+//            label = { Text("Ingredients") },
+//        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -146,6 +146,6 @@ fun RecipeItem(recipe: Recipe) {
 @Composable
 fun GreetingPreview3() {
     SimpleCookTheme {
-        HomeApp()
+        HomeApp(ingredientsViewModel = viewModel(), recipeViewModel = viewModel())
     }
 }

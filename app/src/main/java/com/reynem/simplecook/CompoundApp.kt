@@ -7,36 +7,32 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 import com.reynem.simplecook.compound.IngredientsViewModel
 
 val ingredients : List<String> = listOf("Tomato", "Garlic", "Potato")
-val viewModel: IngredientsViewModel = IngredientsViewModel()
 
 @Composable
-fun CompoundApp() {
+fun CompoundApp(viewModel: IngredientsViewModel) {
     FlowRow (
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
         repeat(ingredients.size){
-            IngredientButton(ingredient = ingredients[it])
+            IngredientButton(ingredient = ingredients[it], viewModel)
         }
     }
 }
 
 @Composable
-fun IngredientButton(ingredient: String){
-    var buttonOn by remember { mutableStateOf(false) }
+fun IngredientButton(ingredient: String, viewModel: IngredientsViewModel){
+    val buttonOn = viewModel.triggeredIngredients.contains(ingredient)
     Button(
         contentPadding = PaddingValues(vertical = 4.dp, horizontal = 12.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.inversePrimary),
@@ -47,7 +43,6 @@ fun IngredientButton(ingredient: String){
         ),
         onClick = {
             viewModel.toggleIngredient(ingredient)
-            buttonOn = !buttonOn
         }
     )
     {
@@ -63,5 +58,5 @@ fun IngredientButton(ingredient: String){
 @Preview
 @Composable
 fun IngredientButtonPreview(){
-    CompoundApp()
+    CompoundApp(viewModel = viewModel())
 }

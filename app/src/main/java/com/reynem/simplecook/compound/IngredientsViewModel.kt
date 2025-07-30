@@ -1,8 +1,9 @@
 package com.reynem.simplecook.compound
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.lifecycle.ViewModel
 
-class IngredientsViewModel {
+class IngredientsViewModel : ViewModel() {
     private val _triggeredIngredients = mutableStateListOf<String>()
     val triggeredIngredients: List<String> get() = _triggeredIngredients
 
@@ -13,6 +14,8 @@ class IngredientsViewModel {
             _triggeredIngredients.add(ingredient)
         }
     }
+
+
 
 //    fun clearIngredients(){
 //        _triggeredIngredients.clear()
