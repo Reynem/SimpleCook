@@ -3,4 +3,58 @@
     <string name="title_activity_profile_acitvity" translatable="false">ProfileAcitvity</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
     <string name="number_of_ingredients" formatted="true">You have %d ingredients</string>"
+
+    <!-- Ingredients -->
+    <string name="ingredient_salt">Salt</string>
+    <string name="ingredient_sugar">Sugar</string>
+    <string name="ingredient_flour">Flour</string>
+    <string name="ingredient_milk">Milk</string>
+    <string name="ingredient_egg">Egg</string>
+    <string name="ingredient_sunflower_oil">Sunflower oil</string>
+    <string name="ingredient_butter">Butter</string>
+    <string name="ingredient_potato">Potato</string>
+    <string name="ingredient_carrot">Carrot</string>
+    <string name="ingredient_onion">Onion</string>
+    <string name="ingredient_garlic">Garlic</string>
+    <string name="ingredient_tomato">Tomato</string>
+    <string name="ingredient_cucumber">Cucumber</string>
+    <string name="ingredient_chicken">Chicken</string>
+    <string name="ingredient_beef">Beef</string>
+    <string name="ingredient_pork">Pork</string>
+    <string name="ingredient_rice">Rice</string>
+    <string name="ingredient_buckwheat">Buckwheat</string>
+    <string name="ingredient_pasta">Pasta</string>
+    <string name="ingredient_bread">Bread</string>
+    <string name="ingredient_cheese">Cheese</string>
+    <string name="ingredient_sausage">Sausage</string>
+    <string name="ingredient_ham">Ham</string>
+    <string name="ingredient_yogurt">Yogurt</string>
+    <string name="ingredient_sour_cream">Sour cream</string>
+    <string name="ingredient_mayonnaise">Mayonnaise</string>
+    <string name="ingredient_ketchup">Ketchup</string>
+    <string name="ingredient_black_pepper">Black pepper</string>
+    <string name="ingredient_paprika">Paprika</string>
+    <string name="ingredient_dill">Dill</string>
+    <string name="ingredient_parsley">Parsley</string>
+    <string name="ingredient_green_onion">Green onion</string>
+    <string name="ingredient_olive_oil">Olive oil</string>
+    <string name="ingredient_corn">Corn</string>
+    <string name="ingredient_peas">Peas</string>
+    <string name="ingredient_beans">Beans</string>
+    <string name="ingredient_cabbage">Cabbage</string>
+    <string name="ingredient_mushrooms">Mushrooms</string>
+    <string name="ingredient_tomato_paste">Tomato paste</string>
+
+    <!-- Categories -->
+    <string name="category_spices">Spices</string>
+    <string name="category_products">Products</string>
+    <string name="category_dairy">Dairy</string>
+    <string name="category_oil">Oil</string>
+    <string name="category_vegetables">Vegetables</string>
+    <string name="category_meat">Meat</string>
+    <string name="category_grains">Grains</string>
+    <string name="category_bakery">Bakery</string>
+    <string name="category_sauces">Sauces</string>
+    <string name="category_greens">Greens</string>
+    <string name="category_mushrooms">Mushrooms</string>
 </resources>

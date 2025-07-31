@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleCook</string>
+    <string name="number_of_ingredients">"У вас есть %1$d ингредиентов "</string>
+
+    <!-- Ингредиенты -->
+    <string name="ingredient_salt">Соль</string>
+    <string name="ingredient_sugar">Сахар</string>
+    <string name="ingredient_flour">Мука</string>
+    <string name="ingredient_milk">Молоко</string>
+    <string name="ingredient_egg">Яйцо</string>
+    <string name="ingredient_sunflower_oil">Масло подсолнечное</string>
+    <string name="ingredient_butter">Масло сливочное</string>
+    <string name="ingredient_potato">Картофель</string>
+    <string name="ingredient_carrot">Морковь</string>
+    <string name="ingredient_onion">Лук</string>
+    <string name="ingredient_garlic">Чеснок</string>
+    <string name="ingredient_tomato">Помидоры</string>
+    <string name="ingredient_cucumber">Огурцы</string>
+    <string name="ingredient_chicken">Курица</string>
+    <string name="ingredient_beef">Говядина</string>
+    <string name="ingredient_pork">Свинина</string>
+    <string name="ingredient_rice">Рис</string>
+    <string name="ingredient_buckwheat">Гречка</string>
+    <string name="ingredient_pasta">Макароны</string>
+    <string name="ingredient_bread">Хлеб</string>
+    <string name="ingredient_cheese">Сыр</string>
+    <string name="ingredient_sausage">Колбаса</string>
+    <string name="ingredient_ham">Ветчина</string>
+    <string name="ingredient_yogurt">Йогурт</string>
+    <string name="ingredient_sour_cream">Сметана</string>
+    <string name="ingredient_mayonnaise">Майонез</string>
+    <string name="ingredient_ketchup">Кетчуп</string>
+    <string name="ingredient_black_pepper">Перец черный</string>
+    <string name="ingredient_paprika">Паприка</string>
+    <string name="ingredient_dill">Укроп</string>
+    <string name="ingredient_parsley">Петрушка</string>
+    <string name="ingredient_green_onion">Зелёный лук</string>
+    <string name="ingredient_olive_oil">Оливковое масло</string>
+    <string name="ingredient_corn">Кукуруза</string>
+    <string name="ingredient_peas">Горошек</string>
+    <string name="ingredient_beans">Фасоль</string>
+    <string name="ingredient_cabbage">Капуста</string>
+    <string name="ingredient_mushrooms">Шампиньоны</string>
+    <string name="ingredient_tomato_paste">Томатная паста</string>
+
+    <!-- Категории -->
+    <string name="category_spices">Специи</string>
+    <string name="category_products">Продукты</string>
+    <string name="category_dairy">Молочные</string>
+    <string name="category_oil">Масла</string>
+    <string name="category_vegetables">Овощи</string>
+    <string name="category_meat">Мясо</string>
+    <string name="category_grains">Крупы</string>
+    <string name="category_bakery">Выпечка</string>
+    <string name="category_sauces">Соусы</string>
+    <string name="category_greens">Зелень</string>
+    <string name="category_mushrooms">Грибы</string>
+</resources>

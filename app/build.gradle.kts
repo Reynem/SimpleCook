@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,4 +88,8 @@ secrets {
     propertiesFileName = "secrets.properties"
 
     defaultPropertiesFileName = "local.defaults.properties"
+}
+
+configurations.all {
+    exclude(group = "com.intellij", module = "annotations")
 }
