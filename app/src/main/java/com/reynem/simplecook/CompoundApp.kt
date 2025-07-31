@@ -7,26 +7,30 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 import com.reynem.simplecook.compound.IngredientsViewModel
+import com.reynem.simplecook.database.IngredientStorageViewModel
 
-val ingredients : List<String> = listOf("Tomato", "Garlic", "Potato")
 
 @Composable
-fun CompoundApp(viewModel: IngredientsViewModel) {
+fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientStorageViewModel) {
     FlowRow (
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
-        repeat(ingredients.size){
-            IngredientButton(ingredient = ingredients[it], viewModel)
-        }
+        val ingredients by storageViewModel.getAll().observeAsState(emptyList())
+
+        ingredients
+            .map { it.copy(name = it.name.uppercase()) }
+            .forEach { ingredient ->
+                IngredientButton(ingredient = ingredient.name, viewModel = viewModel)
+            }
     }
 }
 
@@ -53,10 +57,4 @@ fun IngredientButton(ingredient: String, viewModel: IngredientsViewModel){
             text = ingredient
         )
     }
-}
-
-@Preview
-@Composable
-fun IngredientButtonPreview(){
-    CompoundApp(viewModel = viewModel())
 }

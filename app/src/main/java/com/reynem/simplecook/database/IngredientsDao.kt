@@ -12,6 +12,9 @@ interface IngredientsDao {
     @Insert
     suspend fun insert(ingredient: IngredientC)
 
+    @Insert
+    suspend fun insertAll(ingredients: List<IngredientC>)
+
     @Query("SELECT * FROM ingredients")
     suspend fun getAll(): List<IngredientC>
 

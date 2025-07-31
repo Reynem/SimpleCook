@@ -2,7 +2,6 @@ package com.reynem.simplecook.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,13 +11,16 @@ import com.reynem.simplecook.HomeApp
 import com.reynem.simplecook.SettingsApp
 import com.reynem.simplecook.api.RecipeViewModel
 import com.reynem.simplecook.compound.IngredientsViewModel
+import com.reynem.simplecook.database.IngredientStorageViewModel
 
 @Composable
-fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modifier){
-
-    val ingredientsViewModel: IngredientsViewModel = viewModel()
-    val recipeViewModel: RecipeViewModel = viewModel()
-
+fun NavigationGraph(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    ingredientsViewModel: IngredientsViewModel,
+    recipeViewModel: RecipeViewModel,
+    ingredientsStorageViewModel: IngredientStorageViewModel
+){
     NavHost(
         navController = navController,
         startDestination = Screens.Home.route,
@@ -37,7 +39,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
         }
 
         composable(Screens.Compound.route) {
-            CompoundApp(viewModel = ingredientsViewModel)
+            CompoundApp(viewModel = ingredientsViewModel, storageViewModel = ingredientsStorageViewModel)
         }
     }
 }

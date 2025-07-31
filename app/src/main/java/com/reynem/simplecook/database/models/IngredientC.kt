@@ -8,5 +8,5 @@ data class IngredientC(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val category: String,
-    val timesUsed: Int,
+    val timesUsed: Int = 0,
 )
