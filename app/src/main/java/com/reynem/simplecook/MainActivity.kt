@@ -1,12 +1,14 @@
 package com.reynem.simplecook
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -24,10 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         ApiClient.initialize(applicationContext)
         enableEdgeToEdge()
-
-//        val storageViewModel = IngredientStorageViewModel(application)
-//        storageViewModel.initialization()
-
+        Log.d("MainActivity", "onCreate called")
         setContent {
             MainApp()
         }
@@ -42,6 +41,10 @@ fun MainApp(){
     val ingredientsViewModel: IngredientsViewModel = viewModel()
     val recipeViewModel: RecipeViewModel = viewModel()
     val ingredientsStorageViewModel: IngredientStorageViewModel = viewModel()
+
+    LaunchedEffect(Unit) {
+        ingredientsStorageViewModel.initialization()
+    }
 
     SimpleCookTheme {
         Scaffold(
