@@ -2,6 +2,8 @@ package com.reynem.simplecook
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -23,29 +25,17 @@ import com.reynem.simplecook.database.IngredientStorageViewModel
 
 @Composable
 fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientStorageViewModel) {
-    Column (
+    val categories by storageViewModel.getAllByCategories().observeAsState(emptyMap())
+    LazyColumn (
+        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
-        val ingredients by storageViewModel.getAll().observeAsState(emptyList())
 
-        val categories: HashMap<String, List<String>> = hashMapOf()
-        ingredients
-            .map { it.copy(name = it.category) }
-            .forEach { ingredient ->
-                var currentCategory = listOf<String>()
-                ingredients
-                    .map { it.copy(name = it.name) }
-                    .forEach {
-                        if (it.category == ingredient.name) {
-                            currentCategory = currentCategory + it.name
-                        }
-                    }
-                categories[ingredient.category] = currentCategory
-            }
-
-        categories.forEach { (category, ingredients) ->
+        items(
+            items = categories.entries.toList(),
+            key = { it.key }
+        ){ (category, ingredients) ->
             CategoryContainer(category = category, ingredients = ingredients, viewModel = viewModel)
         }
     }

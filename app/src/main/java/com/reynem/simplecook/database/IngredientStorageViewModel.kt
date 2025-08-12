@@ -69,17 +69,35 @@ class IngredientStorageViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-    fun getAll(): LiveData<List<IngredientC>> = liveData {
+//    fun getAll(): LiveData<List<IngredientC>> = liveData {
+//        try {
+//            Log.d("IngredientStorageVM", "Getting all ingredients")
+//            val ingredients = withContext(Dispatchers.IO) {
+//                ingredientDao.getAll()
+//            }
+//            Log.d("IngredientStorageVM", "Retrieved ${ingredients.size} ingredients")
+//            emit(ingredients)
+//        } catch (e: Exception) {
+//            Log.e("IngredientStorageVM", "Error getting all ingredients", e)
+//            emit(emptyList())
+//        }
+//    }
+
+    fun getAllByCategories(): LiveData<Map<String, List<String>>> = liveData {
         try {
-            Log.d("IngredientStorageVM", "Getting all ingredients")
+            Log.d("IngredientStorageVM", "Getting all ingredients by categories")
             val ingredients = withContext(Dispatchers.IO) {
                 ingredientDao.getAll()
             }
-            Log.d("IngredientStorageVM", "Retrieved ${ingredients.size} ingredients")
-            emit(ingredients)
-        } catch (e: Exception) {
-            Log.e("IngredientStorageVM", "Error getting all ingredients", e)
-            emit(emptyList())
+
+            val categories = ingredients.groupBy(
+                keySelector = { it.category },
+                valueTransform = { it.name })
+
+            emit(categories)
+        } catch(e: Exception){
+            Log.e("IngredientStorageVM", "Error getting all ingredients by categories", e)
+            emit(emptyMap())
         }
     }
 }
