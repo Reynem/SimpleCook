@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import com.reynem.simplecook.database.IngredientStorageViewModel
 @Composable
 fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientStorageViewModel) {
     val categories by storageViewModel.getAllByCategories().observeAsState(emptyMap())
+    val categoriesList = remember(categories) {categories.entries.toList()}
     LazyColumn (
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
         modifier = Modifier
@@ -33,7 +35,7 @@ fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientSto
     ){
 
         items(
-            items = categories.entries.toList(),
+            items = categoriesList,
             key = { it.key }
         ){ (category, ingredients) ->
             CategoryContainer(category = category, ingredients = ingredients, viewModel = viewModel)
@@ -50,12 +52,8 @@ fun CategoryContainer(category: String, ingredients: List<String>, viewModel: In
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        modifier = Modifier
-            .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
-        Text(textAlign = TextAlign.Center, text = category)
-
-        Spacer(modifier = Modifier.width(10.dp))
+        Text(textAlign = TextAlign.Center, text = category, modifier = Modifier.padding(12.dp))
 
         FlowRow{
             ingredients.forEach { ingredient ->
@@ -84,7 +82,7 @@ fun IngredientButton(ingredient: String, viewModel: IngredientsViewModel){
         Text(
             color = if (buttonOn) {MaterialTheme.colorScheme.onPrimary}
                     else {MaterialTheme.colorScheme.onSurface},
-            fontSize = 12f.sp,
+            fontSize = 12.sp,
             text = ingredient
         )
     }
