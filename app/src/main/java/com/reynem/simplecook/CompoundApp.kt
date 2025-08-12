@@ -2,14 +2,18 @@ package com.reynem.simplecook
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -19,18 +23,55 @@ import com.reynem.simplecook.database.IngredientStorageViewModel
 
 @Composable
 fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientStorageViewModel) {
-    FlowRow (
+    Column (
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ){
         val ingredients by storageViewModel.getAll().observeAsState(emptyList())
 
+        val categories: HashMap<String, List<String>> = hashMapOf()
         ingredients
-            .map { it.copy(name = it.name.uppercase()) }
+            .map { it.copy(name = it.category) }
             .forEach { ingredient ->
-                IngredientButton(ingredient = ingredient.name, viewModel = viewModel)
+                var currentCategory = listOf<String>()
+                ingredients
+                    .map { it.copy(name = it.name) }
+                    .forEach {
+                        if (it.category == ingredient.name) {
+                            currentCategory = currentCategory + it.name
+                        }
+                    }
+                categories[ingredient.category] = currentCategory
             }
+
+        categories.forEach { (category, ingredients) ->
+            CategoryContainer(category = category, ingredients = ingredients, viewModel = viewModel)
+        }
+    }
+}
+
+@Composable
+fun CategoryContainer(category: String, ingredients: List<String>, viewModel: IngredientsViewModel){
+    Card (
+        shape = RoundedCornerShape(12.dp),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        modifier = Modifier
+            .padding(horizontal = 20.dp, vertical = 10.dp)
+    ){
+        Text(textAlign = TextAlign.Center, text = category)
+
+        Spacer(modifier = Modifier.width(10.dp))
+
+        FlowRow{
+            ingredients.forEach { ingredient ->
+                IngredientButton(ingredient = ingredient, viewModel = viewModel)
+            }
+        }
     }
 }
 
