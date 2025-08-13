@@ -30,6 +30,7 @@ fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientSto
     val categoriesList = remember(categories) {categories.entries.toList()}
     LazyColumn (
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
             .fillMaxSize()
     ){
@@ -55,32 +56,33 @@ fun CategoryContainer(category: String, ingredients: List<String>, viewModel: In
     ){
         Text(textAlign = TextAlign.Center, text = category, modifier = Modifier.padding(12.dp))
 
-        FlowRow{
+        FlowRow {
             ingredients.forEach { ingredient ->
-                IngredientButton(ingredient = ingredient, viewModel = viewModel)
+                IngredientButton(
+                    ingredient = ingredient,
+                    isTriggered = viewModel.isIngredientTriggered(ingredient),
+                    onToggle = { viewModel.toggleIngredient(ingredient) }
+                )
             }
         }
     }
 }
 
 @Composable
-fun IngredientButton(ingredient: String, viewModel: IngredientsViewModel){
-    val buttonOn = viewModel.triggeredIngredients.contains(ingredient)
+fun IngredientButton(ingredient: String, isTriggered: Boolean, onToggle: () -> Unit){
     Button(
         contentPadding = PaddingValues(vertical = 4.dp, horizontal = 12.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.inversePrimary),
         shape = MaterialTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(containerColor =
-            if (buttonOn) {MaterialTheme.colorScheme.primary}
+            if (isTriggered) {MaterialTheme.colorScheme.primary}
             else {MaterialTheme.colorScheme.surface}
         ),
-        onClick = {
-            viewModel.toggleIngredient(ingredient)
-        }
+        onClick = onToggle
     )
     {
         Text(
-            color = if (buttonOn) {MaterialTheme.colorScheme.onPrimary}
+            color = if (isTriggered) {MaterialTheme.colorScheme.onPrimary}
                     else {MaterialTheme.colorScheme.onSurface},
             fontSize = 12.sp,
             text = ingredient

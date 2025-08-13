@@ -15,6 +15,14 @@ class IngredientsViewModel : ViewModel() {
         }
     }
 
+    fun isIngredientTriggered(ingredient: String): Boolean{
+        return _triggeredIngredients.contains(ingredient)
+    }
+
+    fun getTriggeredIngredients(): String {
+        return _triggeredIngredients.joinToString(",")
+    }
+
 
 
 //    fun clearIngredients(){

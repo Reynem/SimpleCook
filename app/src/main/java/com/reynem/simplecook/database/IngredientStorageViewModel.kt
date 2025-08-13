@@ -90,9 +90,11 @@ class IngredientStorageViewModel(application: Application) : AndroidViewModel(ap
                 ingredientDao.getAll()
             }
 
-            val categories = ingredients.groupBy(
-                keySelector = { it.category },
-                valueTransform = { it.name })
+            val categories = withContext(Dispatchers.IO) {
+                ingredients.groupBy(
+                    keySelector = { it.category },
+                    valueTransform = { it.name })
+            }
 
             emit(categories)
         } catch(e: Exception){

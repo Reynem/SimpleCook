@@ -40,7 +40,7 @@ fun HomeApp(modifier: Modifier = Modifier,
             recipeViewModel: RecipeViewModel,
             ingredientsViewModel: IngredientsViewModel
 ) {
-    val ingredients = ingredientsViewModel.triggeredIngredients.joinToString(",")
+    val ingredients = ingredientsViewModel.getTriggeredIngredients()
     val recipes by recipeViewModel.recipes.observeAsState(emptyList())
     val error by recipeViewModel.error.observeAsState("")
 
