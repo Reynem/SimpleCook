@@ -128,4 +128,7 @@
     <string name="category_nuts">Орехи и семена</string>
     <string name="category_fruits">Фрукты</string>
     <string name="category_sweets">Сладкое</string>
+
+    <string name="save_to_history">Сохранить</string>
+    <string name="view_recipe">Показать рецепт</string>
 </resources>

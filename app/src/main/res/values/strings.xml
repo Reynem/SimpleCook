@@ -130,4 +130,7 @@
     <string name="category_nuts">Nuts / Seeds</string>
     <string name="category_fruits">Fruits</string>
 
+
+    <string name="save_to_history">Save</string>
+    <string name="view_recipe">Show recipe</string>
 </resources>

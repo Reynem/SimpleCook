@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.SubcomposeAsyncImage
 import com.reynem.simplecook.api.RecipeViewModel
@@ -135,12 +137,25 @@ fun RecipeItem(recipe: Recipe) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodySmall
                 )
+                MicroButton(stringResource(R.string.view_recipe), {})
+                MicroButton(stringResource(R.string.save_to_history), {})
             }
         }
     }
 }
 
-
+@Composable
+fun MicroButton(text: String, function: () -> Unit){
+    Button(
+        onClick = function,
+        shape = MaterialTheme.shapes.extraSmall,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            contentColor = MaterialTheme.colorScheme.onSurface
+        ),
+        modifier = Modifier.padding(top = 8.dp, end = 16.dp).fillMaxWidth()
+    ) { Text(text = text, fontSize = 12.sp) }
+}
 
 @Preview(showBackground = true)
 @Composable
