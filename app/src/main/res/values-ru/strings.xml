@@ -43,6 +43,74 @@
     <string name="ingredient_cabbage">Капуста</string>
     <string name="ingredient_mushrooms">Шампиньоны</string>
     <string name="ingredient_tomato_paste">Томатная паста</string>
+    <string name="ingredient_lemon">Лимон</string>
+    <string name="ingredient_apple">Яблоко</string>
+    <string name="ingredient_banana">Банан</string>
+    <string name="ingredient_orange">Апельсин</string>
+    <string name="ingredient_grape">Виноград</string>
+    <string name="ingredient_strawberry">Клубника</string>
+    <string name="ingredient_watermelon">Арбуз</string>
+    <string name="ingredient_chili_pepper">Перец чили</string>
+    <string name="ingredient_cinnamon">Корица</string>
+    <string name="ingredient_basil">Базилик</string>
+    <string name="ingredient_cilantro">Кинза</string>
+    <string name="ingredient_spinach">Шпинат</string>
+    <string name="ingredient_salmon">Лосось</string>
+    <string name="ingredient_herring">Сельдь</string>
+    <string name="ingredient_shrimp">Креветки</string>
+    <string name="ingredient_tuna">Тунец</string>
+    <string name="ingredient_honey">Мёд</string>
+    <string name="ingredient_chocolate">Шоколад</string>
+    <string name="ingredient_cocoa">Какао</string>
+    <string name="ingredient_vanilla">Ваниль</string>
+    <string name="ingredient_walnut">Грецкий орех</string>
+    <string name="ingredient_peanut">Арахис</string>
+    <string name="ingredient_almond">Миндаль</string>
+    <string name="ingredient_kefir">Кефир</string>
+    <string name="ingredient_condensed_milk">Сгущёнка</string>
+    <string name="ingredient_whipped_cream">Взбитые сливки</string>
+    <string name="ingredient_pumpkin">Тыква</string>
+    <string name="ingredient_zucchini">Кабачок</string>
+    <string name="ingredient_eggplant">Баклажан</string>
+    <string name="ingredient_cottage_cheese">Творог</string>
+    <string name="ingredient_cream_cheese">Сливочный сыр</string>
+    <string name="ingredient_mozzarella">Моцарелла</string>
+    <string name="ingredient_feta">Фета</string>
+    <string name="ingredient_milk_powder">Сухое молоко</string>
+
+    <string name="ingredient_coconut_oil">Кокосовое масло</string>
+    <string name="ingredient_sesame_oil">Кунжутное масло</string>
+    <string name="ingredient_margarine">Маргарин</string>
+    <string name="ingredient_lard">Сало</string>
+
+    <string name="ingredient_baguette">Багет</string>
+    <string name="ingredient_croissant">Круассан</string>
+    <string name="ingredient_pita">Пита</string>
+    <string name="ingredient_tortilla">Тортилья</string>
+    <string name="ingredient_bun">Булочка</string>
+
+    <string name="ingredient_champignon">Шампиньон</string>
+    <string name="ingredient_oyster_mushroom">Вешенка</string>
+    <string name="ingredient_porcinis">Белый гриб</string>
+    <string name="ingredient_chanterelle">Лисичка</string>
+
+    <string name="ingredient_cod">Треска</string>
+    <string name="ingredient_mackerel">Скумбрия</string>
+    <string name="ingredient_crab">Краб</string>
+    <string name="ingredient_squid">Кальмар</string>
+    <string name="ingredient_mussels">Мидии</string>
+
+    <string name="ingredient_marshmallow">Зефир</string>
+    <string name="ingredient_caramel">Карамель</string>
+    <string name="ingredient_jam">Варенье</string>
+    <string name="ingredient_cookie">Печенье</string>
+    <string name="ingredient_cake">Торт</string>
+
+    <string name="ingredient_hazelnut">Фундук</string>
+    <string name="ingredient_cashew">Кешью</string>
+    <string name="ingredient_pistachio">Фисташки</string>
+    <string name="ingredient_sunflower_seeds">Семечки</string>
+    <string name="ingredient_sesame_seeds">Кунжут</string>
 
     <!-- Категории -->
     <string name="category_spices">Специи</string>
@@ -56,4 +124,8 @@
     <string name="category_sauces">Соусы</string>
     <string name="category_greens">Зелень</string>
     <string name="category_mushrooms">Грибы</string>
+    <string name="category_fish">Рыба и морепродукты</string>
+    <string name="category_nuts">Орехи и семена</string>
+    <string name="category_fruits">Фрукты</string>
+    <string name="category_sweets">Сладкое</string>
 </resources>

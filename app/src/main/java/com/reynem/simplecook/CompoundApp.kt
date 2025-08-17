@@ -54,7 +54,7 @@ fun CategoryContainer(category: String, ingredients: List<String>, viewModel: In
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
     ){
-        Text(textAlign = TextAlign.Center, text = category, modifier = Modifier.padding(12.dp))
+        Text(textAlign = TextAlign.Center, text = category, modifier = Modifier.padding(12.dp).fillMaxWidth())
 
         FlowRow {
             ingredients.forEach { ingredient ->

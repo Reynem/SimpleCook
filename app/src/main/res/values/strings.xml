@@ -44,6 +44,74 @@
     <string name="ingredient_cabbage">Cabbage</string>
     <string name="ingredient_mushrooms">Mushrooms</string>
     <string name="ingredient_tomato_paste">Tomato paste</string>
+    <string name="ingredient_lemon">Lemon</string>
+    <string name="ingredient_apple">Apple</string>
+    <string name="ingredient_banana">Banana</string>
+    <string name="ingredient_orange">Orange</string>
+    <string name="ingredient_grape">Grapes</string>
+    <string name="ingredient_strawberry">Strawberry</string>
+    <string name="ingredient_watermelon">Watermelon</string>
+    <string name="ingredient_chili_pepper">Chili pepper</string>
+    <string name="ingredient_cinnamon">Cinnamon</string>
+    <string name="ingredient_basil">Basil</string>
+    <string name="ingredient_cilantro">Cilantro</string>
+    <string name="ingredient_spinach">Spinach</string>
+    <string name="ingredient_salmon">Salmon</string>
+    <string name="ingredient_herring">Herring</string>
+    <string name="ingredient_shrimp">Shrimp</string>
+    <string name="ingredient_tuna">Tuna</string>
+    <string name="ingredient_honey">Honey</string>
+    <string name="ingredient_chocolate">Chocolate</string>
+    <string name="ingredient_cocoa">Cocoa</string>
+    <string name="ingredient_vanilla">Vanilla</string>
+    <string name="ingredient_walnut">Walnut</string>
+    <string name="ingredient_peanut">Peanut</string>
+    <string name="ingredient_almond">Almond</string>
+    <string name="ingredient_kefir">Kefir</string>
+    <string name="ingredient_condensed_milk">Condensed milk</string>
+    <string name="ingredient_whipped_cream">Whipped cream</string>
+    <string name="ingredient_pumpkin">Pumpkin</string>
+    <string name="ingredient_zucchini">Zucchini</string>
+    <string name="ingredient_eggplant">Eggplant</string>
+    <string name="ingredient_cottage_cheese">Cottage cheese</string>
+    <string name="ingredient_cream_cheese">Cream cheese</string>
+    <string name="ingredient_mozzarella">Mozzarella</string>
+    <string name="ingredient_feta">Feta</string>
+    <string name="ingredient_milk_powder">Milk powder</string>
+
+    <string name="ingredient_coconut_oil">Coconut oil</string>
+    <string name="ingredient_sesame_oil">Sesame oil</string>
+    <string name="ingredient_margarine">Margarine</string>
+    <string name="ingredient_lard">Lard</string>
+
+    <string name="ingredient_baguette">Baguette</string>
+    <string name="ingredient_croissant">Croissant</string>
+    <string name="ingredient_pita">Pita</string>
+    <string name="ingredient_tortilla">Tortilla</string>
+    <string name="ingredient_bun">Bun</string>
+
+    <string name="ingredient_champignon">Champignon</string>
+    <string name="ingredient_oyster_mushroom">Oyster mushroom</string>
+    <string name="ingredient_porcinis">Porcini</string>
+    <string name="ingredient_chanterelle">Chanterelle</string>
+
+    <string name="ingredient_cod">Cod</string>
+    <string name="ingredient_mackerel">Mackerel</string>
+    <string name="ingredient_crab">Crab</string>
+    <string name="ingredient_squid">Squid</string>
+    <string name="ingredient_mussels">Mussels</string>
+
+    <string name="ingredient_marshmallow">Marshmallow</string>
+    <string name="ingredient_caramel">Caramel</string>
+    <string name="ingredient_jam">Jam</string>
+    <string name="ingredient_cookie">Cookie</string>
+    <string name="ingredient_cake">Cake</string>
+
+    <string name="ingredient_hazelnut">Hazelnut</string>
+    <string name="ingredient_cashew">Cashew</string>
+    <string name="ingredient_pistachio">Pistachio</string>
+    <string name="ingredient_sunflower_seeds">Sunflower seeds</string>
+    <string name="ingredient_sesame_seeds">Sesame seeds</string>
 
     <!-- Categories -->
     <string name="category_spices">Spices</string>
@@ -57,4 +125,9 @@
     <string name="category_sauces">Sauces</string>
     <string name="category_greens">Greens</string>
     <string name="category_mushrooms">Mushrooms</string>
+    <string name="category_fish">Seafood</string>
+    <string name="category_sweets">Sweets</string>
+    <string name="category_nuts">Nuts / Seeds</string>
+    <string name="category_fruits">Fruits</string>
+
 </resources>
