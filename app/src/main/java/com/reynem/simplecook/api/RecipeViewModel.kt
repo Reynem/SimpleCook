@@ -17,8 +17,8 @@ class RecipeViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
-    private val _selectedRecipe = MutableLiveData<ExtendedRecipe>()
-    val selectedRecipe: LiveData<ExtendedRecipe> = _selectedRecipe
+    private val _selectedRecipe = MutableLiveData<ExtendedRecipe?>()
+    val selectedRecipe: LiveData<ExtendedRecipe?> = _selectedRecipe
 
     fun fetchRecipes(ingredients: String) {
         viewModelScope.launch {
@@ -40,5 +40,9 @@ class RecipeViewModel : ViewModel() {
                 _error.postValue("Failed to fetch recipe: ${e.message}")
             }
         }
+    }
+
+    fun clearSelectedRecipe(){
+        _selectedRecipe.postValue(null)
     }
 }

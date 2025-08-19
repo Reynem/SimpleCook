@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -30,9 +32,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.SubcomposeAsyncImage
 import com.reynem.simplecook.api.RecipeViewModel
+import com.reynem.simplecook.api.models.ExtendedRecipe
 import com.reynem.simplecook.compound.IngredientsViewModel
 import com.reynem.simplecook.api.models.Recipe
 import com.reynem.simplecook.ui.theme.SimpleCookTheme
@@ -44,56 +48,56 @@ fun HomeApp(modifier: Modifier = Modifier,
 ) {
     val ingredients = ingredientsViewModel.getTriggeredIngredients()
     val recipes by recipeViewModel.recipes.observeAsState(emptyList())
+    val selectedRecipe by recipeViewModel.selectedRecipe.observeAsState(null)
     val error by recipeViewModel.error.observeAsState("")
 
-    Column(
-        modifier = modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-//        OutlinedTextField(
-//            value = ingredients,
-//            onValueChange = { ingredients = it },
-//            label = { Text("Ingredients") },
-//        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                if (ingredients.isNotBlank()) {
-                    recipeViewModel.fetchRecipes(ingredients)
-                }
-            }) {
-            Text("Search")
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        if (error.isNotEmpty()) {
-            Text(
-                text = error,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-
-        LazyColumn(
+    if (selectedRecipe != null){
+        RecipeDetailScreen(selectedRecipe!!, onBack = {recipeViewModel.clearSelectedRecipe()})
+    } else {
+        Column(
+            modifier = modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(recipes) { recipe ->
-                RecipeItem(recipe = recipe)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    if (ingredients.isNotBlank()) {
+                        recipeViewModel.fetchRecipes(ingredients)
+                    }
+                }) {
+                Text("Search")
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            if (error.isNotEmpty()) {
+                Text(
+                    text = error,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+
+            LazyColumn(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(recipes) { recipe ->
+                    RecipeItem(recipe = recipe, onViewRecipeClick = { id -> recipeViewModel.showSelectedRecipe(id) })
+                }
             }
         }
     }
 }
 
 @Composable
-fun RecipeItem(recipe: Recipe) {
+fun RecipeItem(recipe: Recipe, onViewRecipeClick: (Int) -> Unit = {}) {
     Card (
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -137,8 +141,10 @@ fun RecipeItem(recipe: Recipe) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodySmall
                 )
-                MicroButton(stringResource(R.string.view_recipe), {})
-                MicroButton(stringResource(R.string.save_to_history), {})
+                MicroButton(stringResource(
+                    R.string.view_recipe)
+                ) { onViewRecipeClick(recipe.id) }
+                MicroButton(stringResource(R.string.save_to_history)) {}
             }
         }
     }
@@ -155,6 +161,40 @@ fun MicroButton(text: String, function: () -> Unit){
         ),
         modifier = Modifier.padding(top = 8.dp, end = 16.dp).fillMaxWidth()
     ) { Text(text = text, fontSize = 12.sp) }
+}
+
+@Composable
+fun RecipeDetailScreen(recipe: ExtendedRecipe, onBack: () -> Unit) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        modifier = Modifier
+            .padding(16.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp).verticalScroll(rememberScrollState())) {
+            Button(onClick = onBack) {
+                Text("← Back")
+            }
+            Spacer(Modifier.height(8.dp))
+            Text(recipe.title, style = MaterialTheme.typography.headlineSmall)
+            Spacer(Modifier.height(8.dp))
+            SubcomposeAsyncImage(
+                model = recipe.image,
+                contentDescription = recipe.title,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                loading = { CircularProgressIndicator() }
+            )
+            Spacer(Modifier.height(8.dp))
+            Text("Ready in: ${recipe.readyInMinutes} minutes")
+            Text("Servings: ${recipe.servings}")
+            Spacer(Modifier.height(16.dp))
+            Text(HtmlCompat.fromHtml(recipe.summary, HtmlCompat.FROM_HTML_MODE_COMPACT).toString())
+        }
+    }
 }
 
 @Preview(showBackground = true)
