@@ -95,3 +95,7 @@ secrets {
 configurations.all {
     exclude(group = "com.intellij", module = "annotations")
 }
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
