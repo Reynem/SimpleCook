@@ -131,4 +131,6 @@
 
     <string name="save_to_history">Сохранить</string>
     <string name="view_recipe">Показать рецепт</string>
+
+    <string name="ready_in_minutes" formatted="true">Будет готово за %d минут</string>
 </resources>

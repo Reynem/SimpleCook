@@ -133,4 +133,6 @@
 
     <string name="save_to_history">Save</string>
     <string name="view_recipe">Show recipe</string>
+
+    <string name="ready_in_minutes" formatted="true">Ready in %d minutes</string>
 </resources>

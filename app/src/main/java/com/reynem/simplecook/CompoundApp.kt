@@ -30,7 +30,7 @@ fun CompoundApp(viewModel: IngredientsViewModel, storageViewModel: IngredientSto
     val categoriesList = remember(categories) {categories.entries.toList()}
     LazyColumn (
         contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(48.dp),
         modifier = Modifier
             .fillMaxSize()
     ){
