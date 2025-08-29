@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.reynem.simplecook.database.models.IngredientC
+import com.reynem.simplecook.database.models.*
 
 
 @Dao
@@ -20,4 +20,13 @@ interface IngredientsDao {
 
     @Delete
     suspend fun delete(ingredient: IngredientC)
+
+    @Query("SELECT * FROM history")
+    suspend fun getWholeHistory(): List<HistoryRecipe>
+
+    @Insert
+    suspend fun insertHistoryRecipe(historyRecipe: HistoryRecipe)
+
+    @Delete
+    suspend fun deleteHistoryRecipe(historyRecipe: HistoryRecipe)
 }

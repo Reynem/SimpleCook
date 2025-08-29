@@ -31,7 +31,7 @@ fun NavigationGraph(
         }
 
         composable(Screens.History.route) {
-            HistoryApp()
+            HistoryApp(storageViewModel = ingredientsStorageViewModel)
         }
 
         composable(Screens.Settings.route) {

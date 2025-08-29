@@ -2,9 +2,9 @@ package com.reynem.simplecook.database
 
 import android.content.Context
 import androidx.room.*
-import com.reynem.simplecook.database.models.IngredientC
+import com.reynem.simplecook.database.models.*
 
-@Database(entities = [IngredientC::class], version = 1)
+@Database(entities = [IngredientC::class, HistoryRecipe::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun ingredientsDao(): IngredientsDao
 

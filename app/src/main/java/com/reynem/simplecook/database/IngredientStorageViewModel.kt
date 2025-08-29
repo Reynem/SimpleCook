@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.reynem.simplecook.database.models.IngredientC
+import com.reynem.simplecook.database.models.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -69,20 +69,6 @@ class IngredientStorageViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-//    fun getAll(): LiveData<List<IngredientC>> = liveData {
-//        try {
-//            Log.d("IngredientStorageVM", "Getting all ingredients")
-//            val ingredients = withContext(Dispatchers.IO) {
-//                ingredientDao.getAll()
-//            }
-//            Log.d("IngredientStorageVM", "Retrieved ${ingredients.size} ingredients")
-//            emit(ingredients)
-//        } catch (e: Exception) {
-//            Log.e("IngredientStorageVM", "Error getting all ingredients", e)
-//            emit(emptyList())
-//        }
-//    }
-
     fun getAllByCategories(): LiveData<Map<String, List<String>>> = liveData {
         try {
             Log.d("IngredientStorageVM", "Getting all ingredients by categories")
@@ -100,6 +86,38 @@ class IngredientStorageViewModel(application: Application) : AndroidViewModel(ap
         } catch(e: Exception){
             Log.e("IngredientStorageVM", "Error getting all ingredients by categories", e)
             emit(emptyMap())
+        }
+    }
+
+    fun insertHistoryRecipe(historyRecipe: HistoryRecipe) {
+        viewModelScope.launch {
+            try {
+                ingredientDao.insertHistoryRecipe(historyRecipe)
+            } catch(e: Exception) {
+                Log.e("IngredientStorageVM", "Error inserting history recipe")
+            }
+        }
+    }
+
+    fun getWholeHistory(): LiveData<List<HistoryRecipe>> = liveData {
+        try {
+            val history = withContext(Dispatchers.IO) {
+                ingredientDao.getWholeHistory()
+            }
+
+            emit(history)
+        } catch(e: Exception) {
+            Log.e("IngredientStorageVM", "Error getting whole history")
+        }
+    }
+
+    fun deleteHistoryRecipe(historyRecipe: HistoryRecipe) {
+        viewModelScope.launch {
+            try {
+                ingredientDao.deleteHistoryRecipe(historyRecipe)
+            } catch (e: Exception) {
+                Log.e("IngredientStorageVM", "Error deleting history recipe")
+            }
         }
     }
 }
