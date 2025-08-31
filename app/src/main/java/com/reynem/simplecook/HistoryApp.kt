@@ -12,6 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -24,24 +27,30 @@ import com.reynem.simplecook.database.models.HistoryRecipe
 @Composable
 fun HistoryApp(storageViewModel: IngredientStorageViewModel){
     val historyList by storageViewModel.getWholeHistory().observeAsState(emptyList())
-    LazyColumn(
-        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(48.dp),
-        modifier = Modifier
-            .fillMaxSize()
-    ){
-        items(
-            items = historyList,
-            key = { it.id }
-        ) { recipe ->
-            HistoryObject(recipe = recipe)
+    var selectedRecipe by remember { mutableStateOf<HistoryRecipe?>(null) }
+
+    if (selectedRecipe != null) {
+        HistoryDetailedScreen(recipe = selectedRecipe!!) { selectedRecipe = null }
+    } else {
+        LazyColumn(
+            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(48.dp),
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            items(
+                items = historyList,
+                key = { it.id }
+            ) { recipe ->
+                HistoryObject(recipe = recipe, onViewClick = { selectedRecipe = recipe })
+            }
         }
     }
 }
 
 
 @Composable
-fun HistoryObject(recipe: HistoryRecipe) {
+fun HistoryObject(recipe: HistoryRecipe, onViewClick: () -> Unit = {}) {
     Card (
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -85,6 +94,10 @@ fun HistoryObject(recipe: HistoryRecipe) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodySmall
                 )
+
+                MicroButton(stringResource(
+                    R.string.view_recipe)
+                ) { onViewClick() }
             }
         }
     }
