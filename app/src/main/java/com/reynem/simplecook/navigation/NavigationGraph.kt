@@ -27,7 +27,11 @@ fun NavigationGraph(
         modifier = modifier
     ) {
         composable(Screens.Home.route) {
-            HomeApp(ingredientsViewModel = ingredientsViewModel, recipeViewModel = recipeViewModel)
+            HomeApp(
+                ingredientsViewModel = ingredientsViewModel,
+                recipeViewModel = recipeViewModel,
+                storageViewModel = ingredientsStorageViewModel
+            )
         }
 
         composable(Screens.History.route) {

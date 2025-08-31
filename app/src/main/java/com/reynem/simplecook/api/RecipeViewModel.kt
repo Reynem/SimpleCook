@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.reynem.simplecook.api.models.ExtendedRecipe
 import com.reynem.simplecook.api.models.Recipe
+import com.reynem.simplecook.database.IngredientStorageViewModel
+import com.reynem.simplecook.database.models.HistoryRecipe
 import kotlinx.coroutines.launch
 
 class RecipeViewModel : ViewModel() {
@@ -31,10 +33,23 @@ class RecipeViewModel : ViewModel() {
         }
     }
 
-    fun showSelectedRecipe(id: Int) {
+    fun showSelectedRecipe(id: Int, storageViewModel: IngredientStorageViewModel) {
         viewModelScope.launch {
             try {
                 val extendedRecipe = repository.getRecipeById(id)
+
+                val historyRecipe = HistoryRecipe(
+                    id = extendedRecipe.id,
+                    title = extendedRecipe.title,
+                    image = extendedRecipe.image,
+                    usedIngredients = extendedRecipe.extendedIngredients.toString(),
+                    summary = extendedRecipe.summary,
+                    instructions = extendedRecipe.instructions,
+                    readyInMinutes = extendedRecipe.readyInMinutes,
+                    servings = extendedRecipe.servings,
+                )
+                storageViewModel.insertHistoryRecipe(historyRecipe)
+
                 _selectedRecipe.postValue(extendedRecipe)
             } catch (e: Exception) {
                 _error.postValue("Failed to fetch recipe: ${e.message}")

@@ -39,12 +39,14 @@ import com.reynem.simplecook.api.RecipeViewModel
 import com.reynem.simplecook.api.models.ExtendedRecipe
 import com.reynem.simplecook.compound.IngredientsViewModel
 import com.reynem.simplecook.api.models.Recipe
+import com.reynem.simplecook.database.IngredientStorageViewModel
 import com.reynem.simplecook.ui.theme.SimpleCookTheme
 
 @Composable
 fun HomeApp(modifier: Modifier = Modifier,
             recipeViewModel: RecipeViewModel,
-            ingredientsViewModel: IngredientsViewModel
+            ingredientsViewModel: IngredientsViewModel,
+            storageViewModel: IngredientStorageViewModel
 ) {
     val ingredients = ingredientsViewModel.getTriggeredIngredients()
     val recipes by recipeViewModel.recipes.observeAsState(emptyList())
@@ -89,7 +91,9 @@ fun HomeApp(modifier: Modifier = Modifier,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 items(recipes) { recipe ->
-                    RecipeItem(recipe = recipe, onViewRecipeClick = { id -> recipeViewModel.showSelectedRecipe(id) })
+                    RecipeItem(recipe = recipe,
+                        onViewRecipeClick = { id -> recipeViewModel.showSelectedRecipe(id, storageViewModel) },
+                    )
                 }
             }
         }
@@ -144,7 +148,9 @@ fun RecipeItem(recipe: Recipe, onViewRecipeClick: (Int) -> Unit = {}) {
                 MicroButton(stringResource(
                     R.string.view_recipe)
                 ) { onViewRecipeClick(recipe.id) }
-                MicroButton(stringResource(R.string.save_to_history)) {}
+                MicroButton(stringResource(R.string.save_to_history)) {
+                    onViewRecipeClick(recipe.id)
+                }
             }
         }
     }
@@ -201,6 +207,10 @@ fun RecipeDetailScreen(recipe: ExtendedRecipe, onBack: () -> Unit) {
 @Composable
 fun GreetingPreview3() {
     SimpleCookTheme {
-        HomeApp(ingredientsViewModel = viewModel(), recipeViewModel = viewModel())
+        HomeApp(
+            ingredientsViewModel = viewModel(),
+            recipeViewModel = viewModel(),
+            storageViewModel = viewModel()
+        )
     }
 }
