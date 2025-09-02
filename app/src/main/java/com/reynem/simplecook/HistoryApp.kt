@@ -95,6 +95,15 @@ fun HistoryObject(recipe: HistoryRecipe, onViewClick: () -> Unit = {}) {
                     style = MaterialTheme.typography.bodySmall
                 )
 
+                Text(
+                    text = stringResource(
+                        id = R.string.servings,
+                        recipe.servings
+                    ),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodySmall
+                )
+
                 MicroButton(stringResource(
                     R.string.view_recipe)
                 ) { onViewClick() }

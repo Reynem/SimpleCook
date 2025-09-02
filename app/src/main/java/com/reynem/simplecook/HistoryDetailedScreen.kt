@@ -50,6 +50,13 @@ fun HistoryDetailedScreen(recipe: HistoryRecipe, onBack: () -> Unit) {
             Text("Ready in: ${recipe.readyInMinutes} minutes")
             Text("Servings: ${recipe.servings}")
             Spacer(Modifier.height(16.dp))
+            Text("Ingredients:")
+            Spacer(Modifier.height(8.dp))
+            Text(recipe.usedIngredients) // I should create another method to format this
+            Spacer(Modifier.height(16.dp))
+            Text("Instructions:")
+            Text(recipe.instructions) // I dunno why it is empty
+            Text("Summary:")
             Text(HtmlCompat.fromHtml(recipe.summary, HtmlCompat.FROM_HTML_MODE_COMPACT).toString())
         }
     }

@@ -135,4 +135,5 @@
     <string name="view_recipe">Show recipe</string>
 
     <string name="ready_in_minutes" formatted="true">Ready in %d minutes</string>
+    <string name="servings">Servings: %d</string>
 </resources>

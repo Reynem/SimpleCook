@@ -133,4 +133,5 @@
     <string name="view_recipe">Показать рецепт</string>
 
     <string name="ready_in_minutes" formatted="true">Будет готово за %d минут</string>
+    <string name="servings" formatted="true">Порции: %d</string>
 </resources>
